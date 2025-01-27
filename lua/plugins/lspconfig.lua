@@ -2,8 +2,17 @@ return {
   'neovim/nvim-lspconfig',
   lazy = false,
   dependencies = {
-    'hrsh7th/cmp-nvim-lsp',
+    -- Completion
     'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'saadparwaiz1/cmp_luasnip',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lua',
+
+    -- Snippets
+    'L3MON4D3/LuaSnip',
+    'rafamadriz/friendly-snippets',
   },
   config = function()
     -- Reserve a space in the gutter
@@ -26,6 +35,7 @@ return {
         ['<C-n>'] = cmp.mapping.select_next_item{behavior = 'select'},
 
         ['<cr>'] = cmp.mapping.confirm{select = false},
+        ['<C-y>'] = cmp.mapping.confirm{select = true},
 
         ['<C-Space>'] = cmp.mapping.complete(),
 
