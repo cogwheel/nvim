@@ -1,6 +1,7 @@
 require("cogwheel.remap")
 
 vim.o.guifont = "IosevkaCogslabFixed Nerd Font:h14"
+vim.opt.termguicolors = true
 
 -- TODO: buffer/project-specific? Make a helper?
 vim.opt.tabstop = 2
