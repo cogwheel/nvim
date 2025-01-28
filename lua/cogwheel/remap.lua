@@ -23,8 +23,6 @@ end)
 
 -- Neovide: Zoom for neovide
 if vim.g.neovide then
-  vim.g.neovide_scale_factor = 1.0
-
   vim.keymap.set({ 'n', 'v', 'i', 'x' }, '<C-=>',
     function()
       vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1

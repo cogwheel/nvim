@@ -3,7 +3,6 @@ require "cogwheel.remap"
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.o.guifont = "IosevkaCogslabFixed Nerd Font:h13"
 vim.opt.termguicolors = true
 
 -- TODO: buffer/project-specific? Make a helper?
@@ -30,3 +29,9 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 100
 vim.opt.colorcolumn = "80,120"
+
+if vim.g.neovide then
+  -- Font is set in neovide config
+  vim.g.neovide_scale_factor = 1.0
+  vim.opt.linespace = 3
+end
