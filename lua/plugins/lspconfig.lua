@@ -26,16 +26,16 @@ return {
     )
 
     local cmp = require('cmp')
-    cmp.setup{
+    cmp.setup {
       sources = {
-        {name = 'nvim_lsp'},
+        { name = 'nvim_lsp' },
       },
-      mapping = cmp.mapping.preset.insert{
-        ['<C-p>'] = cmp.mapping.select_prev_item{behavior = 'select'},
-        ['<C-n>'] = cmp.mapping.select_next_item{behavior = 'select'},
+      mapping = cmp.mapping.preset.insert {
+        ['<C-p>'] = cmp.mapping.select_prev_item { behavior = 'select' },
+        ['<C-n>'] = cmp.mapping.select_next_item { behavior = 'select' },
 
-        ['<cr>'] = cmp.mapping.confirm{select = false},
-        ['<C-y>'] = cmp.mapping.confirm{select = true},
+        ['<cr>'] = cmp.mapping.confirm { select = false },
+        ['<C-y>'] = cmp.mapping.confirm { select = true },
 
         ['<C-Space>'] = cmp.mapping.complete(),
 
@@ -53,7 +53,7 @@ return {
     vim.api.nvim_create_autocmd('LspAttach', {
       desc = 'LSP actions',
       callback = function(event)
-        local opts = {buffer = event.buf}
+        local opts = { buffer = event.buf }
 
         vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
         vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
@@ -63,7 +63,7 @@ return {
         vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
         vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
         vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-        vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+        vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
         vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
       end,
     })
