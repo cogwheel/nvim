@@ -24,11 +24,6 @@ require("lazy").setup({
     { import = "plugins" },
   },
 
-  -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "tokyonight-night" } },
-  checker = { enabled = true },
-
   root = vim.fn.stdpath("data") .. "/lazy", -- directory where plugins will be installed
   defaults = {
     -- Set this to `true` to have all your plugins lazy-loaded by default.
