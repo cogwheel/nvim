@@ -9,12 +9,21 @@ vim.keymap.set('v', 'J', ":m '>+1<cr>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<cr>gv=gv")
 
 -- Paste over while preserving paste
-vim.keymap.set('x', '<leader>p', '"_dP')
+vim.keymap.set({'n', 'v', 'x'}, '<leader>p', '"_dP')
 
 -- Delete to null
 vim.keymap.set({ 'n', 'v' }, '<leader>d', '"_d')
 
+-- Disable annoying command mode
 vim.keymap.set('n', 'Q', '<nop>')
+
+function CodeActionOnly(kind)
+  vim.lsp.buf.code_action{context = { only = { kind }}}
+end
+
+vim.keymap.set({'n', 'v'}, '<leader>ca', vim.lsp.buf.code_action)
+vim.keymap.set({'n', 'v'}, '<leader>cf', function() CodeActionOnly("quickfix") end)
+vim.keymap.set({'n', 'v'}, '<leader>cr', function() CodeActionOnly("refactor") end)
 
 -- format the doc
 vim.keymap.set('n', '<leader>f', function()
