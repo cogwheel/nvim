@@ -30,6 +30,8 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 100
 vim.opt.colorcolumn = "80,120"
 
+vim.g.have_nerd_font = true
+
 if vim.g.neovide then
   -- Font is set in neovide config
   vim.g.neovide_scale_factor = 1.0

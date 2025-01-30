@@ -10,6 +10,7 @@
   "lazy.nvim": { "branch": "main", "commit": "7527af40ddd4a93a02911be570b32609b9d4ea53" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "e942edf5c85b6a2ab74059ea566cac5b3e1514a4" },
   "mason.nvim": { "branch": "main", "commit": "e2f7f9044ec30067bc11800a9e266664b88cda22" },
+  "mini.nvim": { "branch": "main", "commit": "0420076298c4457f200c2de468f65d080597a347" },
   "neo-tree.nvim": { "branch": "v3.x", "commit": "5d172e8315444dbc32867d1c7b04d8e7e68ec4e1" },
   "nui.nvim": { "branch": "main", "commit": "53e907ffe5eedebdca1cd503b00aa8692068ca46" },
   "nvim-cmp": { "branch": "main", "commit": "12509903a5723a876abd65953109f926f4634c30" },
