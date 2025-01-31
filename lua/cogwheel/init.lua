@@ -11,8 +11,30 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
+-- case-insensitive search unless \C or capital letters
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 vim.opt.smartindent = true
 vim.opt.autoindent = true
+
+vim.opt.timeoutlen = 3000 -- i am slow
+
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+-- Sets how neovim will display certain whitespace characters in the editor.
+--  See `:help 'list'`
+--  and `:help 'listchars'`
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+-- TODO: this didn't seem to do anything
+vim.opt.inccommand = 'split'
+
+
+-- Someone somewhere said this was slow
+vim.opt.cursorline = true
 
 vim.opt.wrap = false
 
@@ -27,7 +49,7 @@ vim.opt.incsearch = true
 vim.opt.scrolloff = 8
 vim.opt.isfname:append("@-@")
 
-vim.opt.updatetime = 100
+vim.opt.updatetime = 250
 vim.opt.colorcolumn = "80,120"
 
 vim.g.have_nerd_font = true
@@ -37,3 +59,11 @@ if vim.g.neovide then
   vim.g.neovide_scale_factor = 1.0
   vim.opt.linespace = 3
 end
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})

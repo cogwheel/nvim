@@ -2,33 +2,44 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Open file browser
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Open netrw - from theprimeagen' })
 
 -- Move selected block up or down
 vim.keymap.set('v', 'J', ":m '>+1<cr>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<cr>gv=gv")
 
 -- Paste over while preserving paste
-vim.keymap.set({'n', 'v', 'x'}, '<leader>p', '"_dP')
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>p', '"_dP', { desc = '[d]elete without yanking and [p]aste' })
 
 -- Delete to null
-vim.keymap.set({ 'n', 'v' }, '<leader>d', '"_d')
+vim.keymap.set({ 'n', 'v' }, '<leader>d', '"_d', { desc = '[d]elete without yanking' })
 
 -- Disable annoying command mode
 vim.keymap.set('n', 'Q', '<nop>')
 
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'Clear highlights with escape' })
+
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'quickfix' })
+
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+-- Disable arrow keys
+vim.keymap.set('n', '<left>', function() vim.notify("Don't use arrow keys to move", 'error', { title = "War crimes" }) end)
+vim.keymap.set('n', '<up>', function() vim.notify("Don't use arrow keys to move", 'error', { title = "War crimes" }) end)
+vim.keymap.set('n', '<down>', function() vim.notify("Don't use arrow keys to move", 'error', { title = "War crimes" }) end)
+vim.keymap.set('n', '<right>', function() vim.notify("Don't use arrow keys to move", 'error', { title = "War crimes" }) end)
+
 function CodeActionOnly(kind)
-  vim.lsp.buf.code_action{context = { only = { kind }}}
+  vim.lsp.buf.code_action { context = { only = { kind } } }
 end
 
-vim.keymap.set({'n', 'v'}, '<leader>ca', vim.lsp.buf.code_action)
-vim.keymap.set({'n', 'v'}, '<leader>cf', function() CodeActionOnly("quickfix") end)
-vim.keymap.set({'n', 'v'}, '<leader>cr', function() CodeActionOnly("refactor") end)
+vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { desc = 'Do [c]ode [a]ction' })
+vim.keymap.set({ 'n', 'v' }, '<leader>cf', function() CodeActionOnly("quickfix") end, { desc = 'Do [c]ode action [f]ix' })
+vim.keymap.set({ 'n', 'v' }, '<leader>cr', function() CodeActionOnly("refactor") end,
+  { desc = 'Do [c]ode action [r]efactor' })
 
 -- format the doc
-vim.keymap.set('n', '<leader>f', function()
-  vim.lsp.buf.format()
-end)
+vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, { desc = '[f]ormat with lsp' })
 
 -- Neovide: Zoom for neovide
 if vim.g.neovide then
