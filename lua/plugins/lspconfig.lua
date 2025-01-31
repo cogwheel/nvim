@@ -53,18 +53,23 @@ return {
     vim.api.nvim_create_autocmd('LspAttach', {
       desc = 'LSP actions',
       callback = function(event)
-        local opts = { buffer = event.buf }
+        local function MakeOpts(opts)
+          opts = opts or {}
+          opts.buffer = event.buf
+          return opts
+        end
 
-        vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-        vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-        vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-        vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-        vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-        vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-        vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-        vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-        vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+        -- TODO: can these be defined in remap since they use the standard vim lsp stuff?
+        vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', MakeOpts { desc = "LSP Hover" })
+        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', MakeOpts { desc = "[g]o to [d]efinition" })
+        vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', MakeOpts { desc = "[g]o to [D]eclaration" })
+        vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>',
+          MakeOpts { desc = "[g]o to [i]mplementation" })
+        vim.keymap.set('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<cr>',
+          MakeOpts { desc = "[g]o to [t]ype definition" })
+        vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', MakeOpts { desc = "[g]o to [r]eferences" })
+        vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>',
+          MakeOpts { desc = "[g]o to [s]ignature help" })
       end,
     })
   end,
