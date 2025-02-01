@@ -60,16 +60,28 @@ return {
         end
 
         -- TODO: can these be defined in remap since they use the standard vim lsp stuff?
-        vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', MakeOpts { desc = "LSP Hover" })
-        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', MakeOpts { desc = "[g]o to [d]efinition" })
-        vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', MakeOpts { desc = "[g]o to [D]eclaration" })
-        vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>',
-          MakeOpts { desc = "[g]o to [i]mplementation" })
-        vim.keymap.set('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<cr>',
-          MakeOpts { desc = "[g]o to [t]ype definition" })
-        vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', MakeOpts { desc = "[g]o to [r]eferences" })
-        vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>',
-          MakeOpts { desc = "[g]o to [s]ignature help" })
+        vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, MakeOpts { desc = "LSP Hover" })
+        vim.keymap.set('n', '<leader>id', function() vim.lsp.buf.definition() end, MakeOpts { desc = "Go to [d]efinition (LSP)" })
+        vim.keymap.set('n', '<leader>iD', function() vim.lsp.buf.declaration() end, MakeOpts { desc = "Go to [D]eclaration (LSP)" })
+        vim.keymap.set('n', '<leader>ii', function() vim.lsp.buf.implementation() end,
+          MakeOpts { desc = "Go to [i]mplementation (LSP)" })
+        vim.keymap.set('n', '<leader>it', function() vim.lsp.buf.type_definition() end,
+          MakeOpts { desc = "Go to [t]ype definition (LSP)" })
+        vim.keymap.set('n', '<leader>ir', function() vim.lsp.buf.references() end, MakeOpts { desc = "Show [r]eferences (LSP)" })
+        -- TODO: figure out what signature help is :>
+        vim.keymap.set('n', '<leader>is', function() vim.lsp.buf.signature_help() end,
+          MakeOpts { desc = "Show [s]ignature help (LSP)" })
+
+        local function do_code_action(kind)
+          vim.lsp.buf.code_action { context = { only = { kind } } }
+        end
+
+        vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, { desc = 'Do code [a]ction (LSP)' })
+        vim.keymap.set('n', '<leader>c<S-F>', function() do_code_action("quickfix") end, { desc = 'Do code [F]ix (LSP)' })
+        vim.keymap.set('n', '<leader>c<S-R>', function() do_code_action("refactor") end, { desc = '[c]ode [R]efactor (LSP)' })
+        vim.keymap.set('n', '<leader>cr', function() vim.lsp.buf.rename() end, { desc = '[r]ename symbol (LSP)' })
+        vim.keymap.set('n', '<leader>cf', function() vim.lsp.buf.format({ async = true }) end,
+          { desc = "[f]ormat code (LSP)" })
       end,
     })
   end,

@@ -51,6 +51,7 @@ return {
       { '<leader>d', group = '[d]elete without yank' },
       { '<leader>f', group = '[f]uzzy' },
       { '<leader>g', group = '[g]it' },
+      { '<leader>i', group = '[i]ntellisense (LSP)' },
       --{ '<leader>s', group = '[S]earch' },
       --{ '<leader>w', group = '[W]orkspace' },
       --{ '<leader>t', group = '[T]oggle' },

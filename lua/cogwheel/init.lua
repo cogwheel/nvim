@@ -32,7 +32,6 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- TODO: this didn't seem to do anything
 vim.opt.inccommand = 'split'
 
-
 -- Someone somewhere said this was slow
 vim.opt.cursorline = true
 
