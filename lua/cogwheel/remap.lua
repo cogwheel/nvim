@@ -23,6 +23,8 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'quickfix' 
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+vim.keymap.set('n', 'gp', 'p`[v`]=', { desc = 'Paste with indent' })
+
 -- Disable arrow keys
 local function disable_arrow(arrow)
   vim.keymap.set('n', arrow,
