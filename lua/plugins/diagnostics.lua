@@ -6,6 +6,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
         return
       end
     end
+    -- TODO: don't do this alongside inlay hints
     vim.diagnostic.open_float {
       scope = "cursor",
       focusable = false,
