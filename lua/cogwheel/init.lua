@@ -37,8 +37,12 @@ vim.opt.cursorline = true
 
 vim.opt.wrap = false
 
-vim.opt.swapfile = false
---vim.opt.backup = false
+-- ThePrimeagen set these false, relying on undofile
+-- Undofiles don't work in some cases, e.g. accessing a file through
+-- a different path than normal (symlinks, moved, etc.)
+vim.opt.swapfile = true
+vim.opt.backup = true
+
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir/"
 vim.opt.undofile = true
 
